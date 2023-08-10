@@ -13,8 +13,8 @@ const Section = styled.section`
     background-color: white;
 `
 
-const Character = ({ character }) => {
-    const { name, birth_year, eye_color, films, gender, hair_color, height, skin_color } = character;
+const Character = ( props ) => {
+    const { name, birth_year, eye_color, films, gender, hair_color, height, skin_color } = props.character;
     return (
       <Section>
         <Heading>Name: {name}</Heading>
