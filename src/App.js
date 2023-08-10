@@ -1,20 +1,28 @@
 import React, { useState, useEffect} from 'react';
 import axios from 'axios';
- 
+import styled from 'styled-components';
+import Character from './components/Character'
+
+
+
+
 
 const App = () => {
 
-const [characters, setCharacters] = useState()
+const [characters, setCharacters] = useState([])
+
 
 useEffect(() => {
   axios.get(`https://swapi.dev/api/people/`)
   .then(res => {
-    console.log(res.data.results)
+    setCharacters(res.data)    
   })
   .catch(err => {
     console.log(err.message)
   })
-})
+}, []);
+
+
   // Try to think through what state you'll need for this app before starting. Then build out
   // the state properties here.
 
@@ -25,8 +33,12 @@ useEffect(() => {
   return (
     <div className="App">
       <h1 className="Header">Characters</h1>
+      {characters.map((character, index) => (
+        <Character key={index} character={character} />
+      ))}
     </div>
   );
-}
+};
+
 
 export default App;
